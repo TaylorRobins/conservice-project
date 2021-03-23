@@ -1,23 +1,100 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import EmployeeGrid from "./components/EmployeeGrid";
+import { getEmployees, createEmployee, updateEmployee, deleteEmployee} from "./EmployeesService";
+import Modal from "./components/modal";
+import AddEditEmployeeForm from "./components/AddEditEmployeeForm";
 
 function App() {
+
+  const [employees, setEmployees] = React.useState(() => {
+    fetchEmployees();
+
+    return [];
+  });
+
+  const [isShowingAddEditEmployeeModal, setIsShowingAddEditEmployeeModal] = React.useState(false);
+  const [currentEmployee, setCurrentEmployee] = React.useState(null);
+
+  function fetchEmployees() {
+    getEmployees()
+      .then((response) => {
+        setEmployees(response.data);
+      })
+      .catch((error) => {
+        debugger;
+      })
+  }
+
+  function handleAddEmployeeClick() {
+    setCurrentEmployee(null);
+    setIsShowingAddEditEmployeeModal(true);
+  }
+
+  function handleCloseModal() {
+    setIsShowingAddEditEmployeeModal(false);
+  }
+
+  function handleCreateEmployee(employee) {
+    createEmployee(employee)
+      .then((response) => {
+        setIsShowingAddEditEmployeeModal(false);
+        alert("Successfully Created New Employee");
+        fetchEmployees();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  function handleEditEmployee(employee) {
+    setCurrentEmployee(employee);
+    setIsShowingAddEditEmployeeModal(true);
+
+  }
+
+  function handleUpdateEmployee(employee) {
+    updateEmployee(employee._id, employee)
+      .then((response) => {
+        setIsShowingAddEditEmployeeModal(false);
+        alert("Successfully Updated Employee");
+        fetchEmployees();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  function handleDeleteEmployee(employee) {
+    deleteEmployee(employee._id)
+      .then((response) => {
+        setIsShowingAddEditEmployeeModal(false);
+        alert("Successfully Deleted Employee");
+        fetchEmployees();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={handleAddEmployeeClick}>Add New Employee</button>
+      {
+        isShowingAddEditEmployeeModal ? (
+          <Modal>
+            <AddEditEmployeeForm
+            existingEmployee = {currentEmployee} 
+            handleCloseModal={handleCloseModal} 
+            handleCreateEmployee={handleCreateEmployee} 
+            handleUpdateEmployee={handleUpdateEmployee}
+            />
+          </Modal>
+        ) : null
+      }
+      
+      <h1>Conservice Employee Manager</h1>
+      <EmployeeGrid employees={employees} handleEditEmployee={handleEditEmployee} />
     </div>
   );
 }
