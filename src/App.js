@@ -88,6 +88,7 @@ function App() {
             handleCloseModal={handleCloseModal} 
             handleCreateEmployee={handleCreateEmployee} 
             handleUpdateEmployee={handleUpdateEmployee}
+            handleDeleteEmployee={handleDeleteEmployee}
             />
           </Modal>
         ) : null

@@ -9,7 +9,7 @@ function EmployeeGrid({ employees, handleEditEmployee }) {
             employees && employees.length 
             ?
             employees.map((employee) => {
-                return <employee employee={employee} 
+                return <Employee employee={employee} 
                 key={employee._id} 
                 handleEditEmployee={handleEditEmployee} />;
             }) 

@@ -107,7 +107,7 @@ function AddEditEmployeeForm({handleCloseModal, handleCreateEmployee, existingEm
             handleCreateEmployee(employee);
         }
 
-        handleCreateEmployee(employee);
+        // handleCreateEmployee(employee);
     }
     return <div className="add-edit-employee-form-container">
             <h1>{existingEmployee ? "Edit Employee" : "Add Employee"}</h1>
