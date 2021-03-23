@@ -3,7 +3,7 @@ import axios from "axios";
 // URL for our node express running locally
 //const BASE_URL = "http://localhost:3005";
 
-const BASE_URL = "https://conservice-api.herokuapp.com/"
+const BASE_URL = "https://conservice-api.herokuapp.com";
 
 const getEmployees = () => {
     return axios.get(`${BASE_URL}/api/employees`);
