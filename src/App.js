@@ -115,7 +115,8 @@ function App() {
       
       <h1>Conservice Employee Manager</h1>
       <input 
-      type="text" 
+      type="text"
+      placeholder="Search..." 
       className="search-input" 
       value={searchQuery} 
       onChange={(e) => {
