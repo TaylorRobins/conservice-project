@@ -80,7 +80,7 @@ function App() {
         fetchEmployees();
       })
       .catch((error) => {
-        alert(error);
+        alert(error.response.data);
       });
   }
 
@@ -92,7 +92,7 @@ function App() {
         fetchEmployees();
       })
       .catch((error) => {
-        alert(error);
+        alert(error.response.data);
       });
   }
 
