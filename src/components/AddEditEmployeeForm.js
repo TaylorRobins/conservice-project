@@ -113,37 +113,37 @@ function AddEditEmployeeForm({handleCloseModal, handleCreateEmployee, existingEm
             <h1>{existingEmployee ? "Edit Employee" : "Add Employee"}</h1>
         <form onSubmit= {handleSubmit} id="usrform" className="employee-form">
             <label>
-                Name<span className="required">*</span>:
+                Name:<span className="required">*</span>:
                 <input type="text" value={name} onChange={(e) => setName(e.target.value) } className={errors.name ? "invalid" : ""}/>
                 {errors.name ? <span className="required">{errors.name}</span> : null}
             </label>
             <label>
-                Address<span className="required">*</span>:
+                Address:<span className="required">*</span>:
                 <textarea rows="2" cols="25" name="address" form="usrform" value={address} onChange={(e) => setAddress(e.target.value) } className={errors.address ? "invalid" : ""}></textarea>
                 {errors.address ? <span className="required">{errors.address}</span> : null}
             </label>
             <label>
-                Email Address<span className="required">*</span>:
+                Email Address:<span className="required">*</span>:
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value) } className={errors.email ? "invalid" : ""}/>
                 {errors.email ? <span className="required">{errors.email}</span> : null}
             </label>
             <label>
-                Preferred Contact Phone Number<span className="required">*</span>:
+                Preferred Contact Phone Number:<span className="required">*</span>:
                 <input type="text" value={phone} onChange={(e) => setPhone(e.target.value) } className={errors.phone ? "invalid" : ""}/>
                 {errors.phone ? <span className="required">{errors.phone}</span> : null}
             </label>
             <label>
-                Position<span className="required">*</span>:
+                Position:<span className="required">*</span>:
                 <input type="text" value={position} onChange={(e) => setPosition(e.target.value) } className={errors.position ? "invalid" : ""}/>
                 {errors.position ? <span className="required">{errors.position}</span> : null}
             </label>
             <label>
-                Department<span className="required">*</span>:
+                Department:<span className="required">*</span>:
                 <input type="text" value={department} onChange={(e) => setDepartment(e.target.value) } className={errors.department ? "invalid" : ""}/>
                 {errors.department ? <span className="required">{errors.department}</span> : null}
             </label>
             <label>
-                Start Date<span className="required">*</span>:
+                Start Date:<span className="required">*</span>:
                 <input type="date" value={start} onChange={(e) => setStart(e.target.value) } className={errors.start ? "invalid" : ""}/>
                 {errors.start ? <span className="required">{errors.start}</span> : null}
             </label>
@@ -152,17 +152,17 @@ function AddEditEmployeeForm({handleCloseModal, handleCreateEmployee, existingEm
                 <input type="date" value={end} onChange={(e) => setEnd(e.target.value) }/>
             </label>
             <label>
-                Employment Status<span className="required">*</span>:
+                Employment Status:<span className="required">*</span>:
                 <input type="text" value={status} onChange={(e) => setStatus(e.target.value) } className={errors.status ? "invalid" : ""}/>
                 {errors.status ? <span className="required">{errors.status}</span> : null}
             </label>
             <label>
-                Shift<span className="required">*</span>:
+                Shift:<span className="required">*</span>:
                 <input type="text" value={shift} onChange={(e) => setShift(e.target.value) } className={errors.shift ? "invalid" : ""}/>
                 {errors.shift ? <span className="required">{errors.shift}</span> : null}
             </label>
             <label>
-                Manager<span className="required">*</span>:
+                Manager:<span className="required">*</span>:
                 <input type="text" value={manager} onChange={(e) => setManager(e.target.value) } className={errors.manager ? "invalid" : ""}/>
                 {errors.manager ? <span className="required">{errors.manager}</span> : null}
             </label>

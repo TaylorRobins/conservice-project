@@ -9,6 +9,10 @@ const getEmployees = () => {
     return axios.get(`${BASE_URL}/api/employees`);
 };
 
+const getEmployee = (employeeId) => {
+    return axios.get(`${BASE_URL}/api/employees/${employeeId}`);
+  };
+
 const createEmployee = (employee) => {
     return axios.post(`${BASE_URL}/api/employees`, employee);
 };
@@ -21,4 +25,4 @@ const deleteEmployee = (employeeId) => {
     return axios.delete(`${BASE_URL}/api/employees/${employeeId}`);
 }
 
-export { getEmployees, createEmployee, updateEmployee, deleteEmployee };
+export { getEmployees, createEmployee, updateEmployee, deleteEmployee, getEmployee };

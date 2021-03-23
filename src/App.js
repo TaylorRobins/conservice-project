@@ -6,12 +6,30 @@ import Modal from "./components/modal";
 import AddEditEmployeeForm from "./components/AddEditEmployeeForm";
 
 function App() {
-
+  const [originalEmployees, setOriginalEmployees] = React.useState([]);
   const [employees, setEmployees] = React.useState(() => {
     fetchEmployees();
 
     return [];
   });
+  const [searchQuery, setSearchQuery] = React.useState("");
+  React.useEffect(() => {
+    if (!searchQuery) {
+      setEmployees(originalEmployees);
+      return;
+    }
+
+    const filteredEmployees = originalEmployees.filter((employee) => {
+      const searchQueryLowerCase = searchQuery.toLowerCase();
+      const employeeNameLowerCase = employee.name.toLowerCase();
+
+      if (employeeNameLowerCase.includes(searchQueryLowerCase)) {
+        return true;
+      }
+    });
+
+    setEmployees(filteredEmployees);
+  }, [searchQuery, originalEmployees]);
 
   const [isShowingAddEditEmployeeModal, setIsShowingAddEditEmployeeModal] = React.useState(false);
   const [currentEmployee, setCurrentEmployee] = React.useState(null);
@@ -19,6 +37,7 @@ function App() {
   function fetchEmployees() {
     getEmployees()
       .then((response) => {
+        setOriginalEmployees(response.data);
         setEmployees(response.data);
       })
       .catch((error) => {
@@ -95,6 +114,13 @@ function App() {
       }
       
       <h1>Conservice Employee Manager</h1>
+      <input 
+      type="text" 
+      className="search-input" 
+      value={searchQuery} 
+      onChange={(e) => {
+        setSearchQuery(e.target.value);
+      }} />
       <EmployeeGrid employees={employees} handleEditEmployee={handleEditEmployee} />
     </div>
   );
